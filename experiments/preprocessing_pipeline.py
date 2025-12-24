@@ -36,7 +36,7 @@ def embed_chunk(chunk_text):
     result = client.models.embed_content(
         model="gemini-embedding-001",
         contents=chunk_text,
-        config=types.EmbedContentConfig(output_dimensionality=768)
+        config=types.EmbedContentConfig(output_dimensionality=1024)
     )
     [embedding_obj] = result.embeddings
     return embedding_obj.values
@@ -53,7 +53,7 @@ def upsert_documents(documents, splitter, namespace=None):
             metadata = {
                 'file_name': document.metadata['name'],
                 'file_path': document.metadata['path'],
-                'text': document.page_content,
+                'text': chunk.page_content,
                 'chunk_index': idx,
                 'total_chunks': total_chunks
             }
