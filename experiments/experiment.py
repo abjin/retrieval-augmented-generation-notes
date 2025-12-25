@@ -87,8 +87,6 @@ def run_experiment(question="", ground_truth="", top_k=1, namespace=""):
         "total_tokens": last_chunk.usage_metadata.total_token_count,
         "ttft": ttft,
         "latency": end_time - start_time,
-        "response": result,
-        "retrieved_texts": retrieved_texts,
         "namespace": namespace,
         "top_k": top_k,
     }
