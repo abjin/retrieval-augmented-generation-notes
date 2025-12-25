@@ -301,6 +301,13 @@ Chunk Size 가 증가함에 따라 청크 길이가 길어져 LLM 모델에 입�
 
 **Answer Relevancy**
 
+Overlap 이 증가하면 인접한 문서 청크 간에 중복이 발생하여 문맥이 단절 되는 문제가 완화되고 답변 생성에 필요한 정보가 연속적으로 컨텍스트에 포함되 가능성이 높아질 것으로 예상됩니다.
+
+Chunk Size 가 작은 경우에는 Overlap 증가에 따라 답변에 필요한 정보가 단절되지 않고 이어서 제공될 것입니다.
+따라서 Answer Relevancy 가 유의미하게 증가할 것으로 예상됩니다. 
+
+하지만 Chunk Size 가 큰 경우에는 Overlap 을 증가시켜도 문서 청크 내부에 이미 답변에 필요한 충분한 량의 정보가 들어 있으므로 유의미한 Answer Relevancy 증가는 없을 것으로 예상됩니다.
+
 **Faithfulness**
 
 gemini-3-flash-preview 모델은 비교적 강력한 추론 성능을 보유하고 있으므로 Chunk Size 에 변화에 따라 컨텍스트 크기가 변동되더라도 Faithfulness 는 큰 변동 없이 유지될 것으로 예상됩니다.
@@ -308,7 +315,14 @@ Faithfulness 지표는 컨텍스트의 크기 보다 모델의 성능에 영향�
 
 **Context Recall**
 
+Chunk Size 가 작은 경우에 Overlap 이 큰 경우 답변에 필요한 정보가 단절되지 않고 연속해서 제공될 가능성이 커지므로 Context Recall 이 증가할 것으로 예상됩니다.
+
+Chunk Size 가 큰 경우에는 Overlap 증가와 관계 없이 이미 하나의 문서 청크 내부에 충분한 정보가 들어있기 때문에 유의미한 Conext Recall 증가는 없을 것으로 예상됩니다.
+
 **Context Precision**
+
+Overlap 이 증가함에 따라 동일한 정보가 여러 청크에 중복해서 포함될 가능성이 커져, 검색 결과에 중복된 컨텍스트가 포함되게 됩니다.
+따라서 Chunk Size 의 크기에 비례해 각 청크에 중복 정보량이 증가하여 Context Precison 이 작아질 것으로 예상됩니다.
 
 **Latency & Token Usage**
 
