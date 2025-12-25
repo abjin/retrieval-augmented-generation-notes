@@ -8,6 +8,10 @@ from google import genai
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.documents import Document
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 client = genai.Client()
 pc = Pinecone(api_key=os.environ.get("PINECONE_API_KEY"))
 index = pc.Index("rag-notes")
